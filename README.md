@@ -1,0 +1,1 @@
+Hometask in python automation ciurse
