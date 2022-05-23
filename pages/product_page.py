@@ -14,17 +14,17 @@ class ProductPage(BasePage):
         self.should_be_product_cost_in_basket_message()
 
     def should_see_success_message(self):
-        self.is_element_present(*ProductPageLocators.SUCCESS_MESSAGE_TOAST)
+        self.is_element_present(*ProductPageLocators.PRODUCT_NAME_IN_SUCCESS_TOAST)
 
     def get_product_name(self):
         return self.browser.find_element(*ProductPageLocators.PRODUCT_NAME).text
 
     def should_be_product_name_in_success_message(self):
-        success_message = self.browser.find_element(
-            *ProductPageLocators.SUCCESS_MESSAGE_TOAST
+        product_name_in_message = self.browser.find_element(
+            *ProductPageLocators.PRODUCT_NAME_IN_SUCCESS_TOAST
         ).text
         product_name = self.get_product_name()
-        assert product_name in success_message
+        assert product_name == product_name_in_message
 
     def get_product_cost(self):
         return self.browser.find_element(*ProductPageLocators.PRODUCT_COST_LABEL).text
