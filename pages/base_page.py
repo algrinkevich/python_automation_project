@@ -27,7 +27,7 @@ class BasePage:
     def is_element_present(self, how, what):
         try:
             self.browser.find_element(how, what)
-        except (NoSuchElementException):
+        except NoSuchElementException:
             return False
         return True
 
@@ -61,3 +61,8 @@ class BasePage:
             alert.accept()
         except NoAlertPresentException:
             print("No second alert presented")
+
+    def go_to_basket_page(self):
+        self.browser.find_element(*BasePageLocators.VIEW_BASKET_BTN).click()
+        assert self.browser.current_url == "http://selenium1py.pythonanywhere.com/en-gb/basket/", \
+            "The opened page is not Basket."
