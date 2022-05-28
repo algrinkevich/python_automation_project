@@ -18,3 +18,12 @@ def browser(request):
     yield browser
     print("\nquit browser..")
     browser.quit()
+
+
+@pytest.fixture(scope="function")
+def language(request):
+    user_language = request.config.getoption("language")
+    language_name_exceptions = {
+        'en': 'en-gb'
+    }
+    return language_name_exceptions.get(user_language, user_language)

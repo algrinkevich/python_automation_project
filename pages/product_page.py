@@ -3,9 +3,10 @@ from .base_page import BasePage
 
 
 class ProductPage(BasePage):
-    def add_to_basket(self):
+    def add_to_basket(self, solve_quiz=False):
         self.browser.find_element(*ProductPageLocators.ADD_TO_BASKET_BTN).click()
-        #self.solve_quiz_and_get_code()
+        if solve_quiz:
+            self.solve_quiz_and_get_code()
 
     def should_be_added_to_basket(self):
         self.should_see_success_message()

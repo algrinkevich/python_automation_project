@@ -15,18 +15,19 @@ class BasePage:
     def open(self):
         self.browser.get(self.url)
 
-    def go_to_login_page(self):
-        link = self.browser.find_element(*BasePageLocators.LOGIN_LINK)
-        link.click()
-        assert self.browser.current_url == "http://selenium1py.pythonanywhere.com/en-gb/accounts/login/", \
+    def go_to_login_page(self, language):
+        self.browser.find_element(*BasePageLocators.LOGIN_LINK).click()
+        assert self.browser.current_url == f"https://selenium1py.pythonanywhere.com/{language}/accounts/login/", \
             "The opened page is not Login."
 
     def should_be_login_link(self):
         assert self.is_element_present(*BasePageLocators.LOGIN_LINK), "Login link is not presented"
 
-    def is_element_present(self, how, what):
+    def is_element_present(self, how, what, timeout=15):
         try:
-            self.browser.find_element(how, what)
+            WebDriverWait(self.browser, timeout).until(
+                EC.visibility_of_element_located((how, what))
+            )
         except NoSuchElementException:
             return False
         return True
@@ -62,7 +63,11 @@ class BasePage:
         except NoAlertPresentException:
             print("No second alert presented")
 
-    def go_to_basket_page(self):
+    def go_to_basket_page(self, language):
         self.browser.find_element(*BasePageLocators.VIEW_BASKET_BTN).click()
-        assert self.browser.current_url == "http://selenium1py.pythonanywhere.com/en-gb/basket/", \
+        assert self.browser.current_url == f"https://selenium1py.pythonanywhere.com/{language}/basket/",\
             "The opened page is not Basket."
+
+    def should_be_authorized_user(self):
+        assert self.is_element_present(*BasePageLocators.USER_ICON), \
+            "User icon is not presented, probably unauthorised user"
