@@ -27,9 +27,3 @@ class TestLoginFromMainPage:
         basket_page = BasketPage(browser, browser.current_url)
         basket_page.should_not_be_items()
         basket_page.should_be_empty_basket_message()
-
-
-
-
-    
-

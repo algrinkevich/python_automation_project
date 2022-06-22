@@ -91,5 +91,3 @@ class TestUserAddToBasketFromProductPage:
         product_page.should_not_be_success_message()
         product_page.add_to_basket()
         product_page.should_be_added_to_basket()
-
-

@@ -5,6 +5,7 @@ from selenium.common.exceptions import NoAlertPresentException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from .locators import BasePageLocators
+from ..config import HOST
 
 
 class BasePage:
@@ -17,7 +18,7 @@ class BasePage:
 
     def go_to_login_page(self, language):
         self.browser.find_element(*BasePageLocators.LOGIN_LINK).click()
-        assert self.browser.current_url == f"https://selenium1py.pythonanywhere.com/{language}/accounts/login/", \
+        assert self.browser.current_url == f"{HOST}/{language}/accounts/login/", \
             "The opened page is not Login."
 
     def should_be_login_link(self):
@@ -65,7 +66,7 @@ class BasePage:
 
     def go_to_basket_page(self, language):
         self.browser.find_element(*BasePageLocators.VIEW_BASKET_BTN).click()
-        assert self.browser.current_url == f"https://selenium1py.pythonanywhere.com/{language}/basket/",\
+        assert self.browser.current_url == f"{HOST}/{language}/basket/",\
             "The opened page is not Basket."
 
     def should_be_authorized_user(self):

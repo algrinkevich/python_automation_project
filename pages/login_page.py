@@ -25,7 +25,3 @@ class LoginPage(BasePage):
         assert self.is_element_present(*LoginPageLocators.SUCCESS_SIGN_UP_ALERT)
         success_alert_mess = self.browser.find_element(*LoginPageLocators.SUCCESS_SIGN_UP_ALERT).text
         assert "Thanks for registering!" in success_alert_mess, "The user has not been registered."
-
-
-
-

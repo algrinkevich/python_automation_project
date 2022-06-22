@@ -10,5 +10,3 @@ class BasketPage(BasePage):
     def should_not_be_items(self):
         assert self.is_not_element_present(*BasketPageLocators.BASKET_ITEMS), \
             "Items are present in the basket"
-
-

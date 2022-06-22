@@ -45,4 +45,3 @@ class ProductPage(BasePage):
     def should_disappear_success_message(self):
         assert self.is_disappeared(*ProductPageLocators.PRODUCT_NAME_IN_SUCCESS_TOAST), \
             "The success message is still presented"
-
