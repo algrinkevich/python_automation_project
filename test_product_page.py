@@ -21,6 +21,7 @@ def generate_links():
 
 @pytest.mark.login
 class TestLoginFromProductPage:
+    @pytest.mark.need_review
     @pytest.mark.parametrize('link', generate_links())
     def test_guest_can_add_product_to_basket(self, browser, link):
         product_page = ProductPage(browser, link)
@@ -53,6 +54,7 @@ class TestLoginFromProductPage:
         product_page.open()
         product_page.should_be_login_link()
 
+    @pytest.mark.need_review
     def test_guest_can_go_to_login_page_from_product_page(self, browser, language):
         product_page = ProductPage(browser, f"{CATALOG}/the-city-and-the-stars_95/")
         product_page.open()
@@ -60,6 +62,7 @@ class TestLoginFromProductPage:
         login_page = LoginPage(browser, browser.current_url)
         login_page.should_be_login_page()
 
+    @pytest.mark.need_review
     def test_guest_cant_see_product_in_basket_opened_from_product_page(self, browser, language):
         product_page = ProductPage(browser, f"{CATALOG}/the-city-and-the-stars_95/")
         product_page.open()
@@ -85,6 +88,7 @@ class TestUserAddToBasketFromProductPage:
         product_page.open()
         product_page.should_not_be_success_message()
 
+    @pytest.mark.need_review
     def test_user_can_add_product_to_basket(self, browser):
         product_page = ProductPage(browser, f"{CATALOG}/coders-at-work_207/")
         product_page.open()
